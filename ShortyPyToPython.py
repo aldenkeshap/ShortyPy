@@ -1,8 +1,9 @@
 import re
+import codecs
 textOrFile = input('Text or file: ')
 if textOrFile[0].lower() == 'f':
     fileName = input('File to convert: ')
-    file = open(fileName)
+    file = codecs.open(fileName, encoding='utf-8')
     text = file.read()
     file.close()
 elif textOrFile[0].lower() == 't':
@@ -13,7 +14,7 @@ elif textOrFile[0].lower() == 't':
         line = input('')
         text += line+'\n'
     text = text[:-1]
-text = 'Ⓘmath'
+
 replacements = {
 'Ｎ':'map', '＃':'tuple', 'Ｈ':'isinstance', 'ⓞ':'or', 'ⓩ':'in', 'ⓧ':'except',
 'ｎ':'delattr', 'ａ':'abs', 'Ｂ':'hash', 'ｆ':'bool', '＠':'super', '３':'round',
@@ -40,7 +41,8 @@ while changed:
     textCopy = text
     text = text.replace('\n\n', '\n')
     changed = text != textCopy
-
+print(text)
+input()
 text = re.sub(r'Ⓘ(.+)', r'from \1 import *', text)
 newlist = replacements.items()
 #sortedlist = list(sorted(lambda s: len(s[0]), key=newlist))[::-1]
@@ -52,11 +54,11 @@ outputOrFile = input('Output or file: ')
 if outputOrFile[0].lower() == 'f':
     if textOrFile[0].lower() == 'f': sameOrDifferent = input('Same file: ')
     if sameOrDifferent[0].lower() == 'y':
-        file = open(fileName, 'w')
+        file = codecs.open(fileName, encoding='utf-8', mode='w')
         file.write(text)
         file.close()
     else:
-        file = open(input('File to write to: '), 'w')
+        file = codecs.open(input('File to write to: '), encoding='utf-8', mode='w')
         file.write(text)
         file.close()
 elif outputOrFile[0].lower() == 'o':

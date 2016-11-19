@@ -1,4 +1,4 @@
-import re
+import re, codecs
 textOrFile = input('Text or file: ')
 if textOrFile[0].lower() == 'f':
     fileName = input('File to convert: ')
@@ -55,11 +55,11 @@ outputOrFile = input('Output or file: ')
 if outputOrFile[0].lower() == 'f':
     if textOrFile[0].lower() == 'f': sameOrDifferent = input('Same file: ')
     if sameOrDifferent[0].lower() == 'y':
-        file = open(fileName, 'w')
+        file = codecs.open(fileName, encoding='utf-8', mode='w')
         file.write(text)
         file.close()
     else:
-        file = open(input('File to write to: '), 'w')
+        file = codecs.open(input('File to write to: '), encoding='utf-8', mode='w')
         file.write(text)
         file.close()
 elif outputOrFile[0].lower() == 'o':

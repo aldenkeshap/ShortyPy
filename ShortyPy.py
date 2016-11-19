@@ -1,8 +1,8 @@
-import re
+import re, codecs
 textOrFile = input('Text or file: ')
 if textOrFile[0].lower() == 'f':
     fileName = input('File to convert: ')
-    file = open(fileName)
+    file = codecs.open(fileName, encoding='utf-8)
     text = file.read()
     file.close()
 elif textOrFile[0].lower() == 't':
